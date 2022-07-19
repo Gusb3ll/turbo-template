@@ -1,0 +1,47 @@
+{
+  "name": "turborepo-example",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "packageManager": "pnpm@7.5.2",
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "dev": "dotenv -- turbo run dev --parallel",
+    "dev:client": "dotenv -- turbo run dev --filter=\"./apps/client\"",
+    "dev:server": "dotenv -- turbo run dev --filter=\"./apps/*\" --filter=\"!./apps/client\"",
+    "build": "dotenv -- turbo run build",
+    "build:package": "dotenv -- turbo run build --filter=\"./packages/*\"",
+    "build:client": "dotenv -- turbo run build --filter=\"./apps/client\"",
+    "build:server": "dotenv -- turbo run build --filter=\"./apps/server\"",
+    "start": "dotenv -- turbo run start",
+    "start:client": "dotenv -- turbo run start --filter=\"./apps/client\"",
+    "start:server": "dotenv -- turbo run start --filter=\"./apps/server\"",
+    "prepare": "husky install",
+    "lint": "turbo run lint"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "0.25.2",
+    "@commitlint/cli": "17.0.3",
+    "@commitlint/config-conventional": "17.0.3",
+    "@swc/cli": "0.1.57",
+    "@swc/core": "1.2.218",
+    "@typescript-eslint/eslint-plugin": "5.30.7",
+    "@typescript-eslint/parser": "5.30.7",
+    "concurrently": "7.3.0",
+    "dotenv": "16.0.1",
+    "dotenv-cli": "6.0.0",
+    "eslint": "8.20.0",
+    "husky": "8.0.1",
+    "nodemon": "2.0.19",
+    "rimraf": "3.0.2",
+    "turbo": "latest",
+    "typescript": "4.7.4"
+  }
+}
