@@ -1,47 +1,52 @@
 {
-  "name": "turborepo-example",
-  "version": "1.0.0",
-  "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "packageManager": "pnpm@7.5.2",
-  "engines": {
-    "npm": ">=7.0.0",
-    "node": ">=14.0.0"
-  },
-  "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "dev": "dotenv -- turbo run dev --parallel",
-    "dev:client": "dotenv -- turbo run dev --filter=\"./apps/client\"",
-    "dev:server": "dotenv -- turbo run dev --filter=\"./apps/*\" --filter=\"!./apps/client\"",
-    "build": "dotenv -- turbo run build",
-    "build:package": "dotenv -- turbo run build --filter=\"./packages/*\"",
-    "build:client": "dotenv -- turbo run build --filter=\"./apps/client\"",
-    "build:server": "dotenv -- turbo run build --filter=\"./apps/server\"",
-    "start": "dotenv -- turbo run start",
-    "start:client": "dotenv -- turbo run start --filter=\"./apps/client\"",
-    "start:server": "dotenv -- turbo run start --filter=\"./apps/server\"",
-    "prepare": "husky install",
-    "lint": "turbo run lint"
-  },
-  "devDependencies": {
-    "@antfu/eslint-config": "0.25.2",
-    "@commitlint/cli": "17.0.3",
-    "@commitlint/config-conventional": "17.0.3",
-    "@swc/cli": "0.1.57",
-    "@swc/core": "1.2.218",
-    "@typescript-eslint/eslint-plugin": "5.30.7",
-    "@typescript-eslint/parser": "5.30.7",
-    "concurrently": "7.3.0",
-    "dotenv": "16.0.1",
-    "dotenv-cli": "6.0.0",
-    "eslint": "8.20.0",
-    "husky": "8.0.1",
-    "nodemon": "2.0.19",
-    "rimraf": "3.0.2",
-    "turbo": "latest",
-    "typescript": "4.7.4"
-  }
+	"name": "turbo-template",
+	"version": "1.0.0",
+	"private": true,
+	"packageManager": "pnpm@7.13.4",
+	"engines": {
+		"npm": ">=7.0.0",
+		"node": ">=16.0.0"
+	},
+	"scripts": {
+		"preinstall": "npx only-allow pnpm",
+		"dev": "dotenv -- turbo run dev --parallel",
+		"dev:client": "dotenv -- turbo run dev --filter=\"./apps/client\"",
+		"dev:server": "dotenv -- turbo run dev --filter=\"./apps/server\"",
+		"build": "dotenv -- turbo run build",
+		"build:client": "dotenv -- turbo run build --filter=\"./apps/client\"",
+		"build:server": "dotenv -- turbo run build --filter=\"./apps/server\"",
+		"build:package": "dotenv -- turbo run build --filter=\"./packages/*\"",
+		"start": "dotenv -- turbo run start",
+		"start:prod": "dotenv -- turbo run start:prod",
+		"start:client": "dotenv -- turbo run start --filter=\"./apps/client\"",
+		"start:server": "dotenv -- turbo run start --filter=\"./apps/server\"",
+		"db:push": "dotenv -- prisma db push --schema ./packages/db/prisma/schema.prisma --accept-data-loss",
+		"db:seed": "dotenv -- turbo run db:seed",
+		"db:studio": "dotenv -- turbo run db:studio",
+		"db:generate": "dotenv -- prisma generate --schema ./packages/db/prisma/schema.prisma",
+		"db:migrate:dev": "dotenv -- prisma migrate dev --schema ./packages/db/prisma/schema.prisma",
+		"db:migrate:reset": "dotenv -- prisma migrate reset --schema ./packages/db/prisma/schema.prisma",
+		"db:migrate:deploy": "dotenv -- prisma migrate deploy --schema ./packages/db/prisma/schema.prisma",
+		"lint": "eslint . --fix",
+		"fmt:check": "prettier --check \"**/*.{ts,tsx,md}\"",
+		"fmt": "prettier --write \"**/*.{ts,tsx,md}\""
+	},
+	"dependencies": {
+		"dotenv": "16.0.3",
+		"dotenv-cli": "6.0.0"
+	},
+	"devDependencies": {
+		"@swc/cli": "0.1.57",
+		"@swc/core": "1.3.8",
+		"@types/node": "18.7.8",
+		"@typescript-eslint/eslint-plugin": "5.40.0",
+		"@typescript-eslint/parser": "5.40.0",
+		"eslint": "8.25.0",
+		"eslint-config-next": "12.3.1",
+		"eslint-config-prettier": "8.5.0",
+		"prettier": "2.7.1",
+		"rimraf": "3.0.2",
+		"turbo": "1.5.6",
+		"typescript": "4.8.4"
+	}
 }
